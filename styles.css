@@ -1,11 +1,31 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
     margin: 0;
     font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+header, footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: #ffa500;
+    color: white;
+    padding: 10px;
+}
+
+header {
+    top: 0;
+}
+
+footer {
+    bottom: 0;
 }
 
 .calculator {
@@ -14,6 +34,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 300px;
+    z-index: 1;
 }
 
 .display {
@@ -84,4 +105,22 @@ body {
     margin-bottom: 5px;
     border-radius: 5px;
     font-size: 1rem;
+}
+
+@keyframes backgroundAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #ffa500, #ff4500, #ffa500, #ff4500);
+    background-size: 400% 400%;
+    animation: backgroundAnimation 20s linear infinite;
+    z-index: 0;
 }
